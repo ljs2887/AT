@@ -1,0 +1,23 @@
+.boardwrite_lines {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+.boardwrite_buttons {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  /* gap: 30px; */
+}
+
+.btn {
+  /* margin-left: 900px; */
+
+}
+
+.btn-success {
+  background-image: linear-gradient(to right, #1fbe5f 22%, #91ea8a 93%);
+  border: #91ea8a;
+}

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch, useHistory, useParams } from 'react-router-dom';
 import '../App.css';
 import './Board.css';
 
 function Board(props) {
+
+  let { id } = useParams();
   return (
     <>
       <div>
