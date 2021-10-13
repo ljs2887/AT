@@ -12,9 +12,9 @@ function Board(props) {
       <div>
         <div className="board_img"></div>
         <div style={{ display: 'flex', gap: '0px', justifyContent: 'center', marginTop: '-30px' }}>
-          <div className="select"> 게 시 판 </div>
-          <div className="notselect"> 공 지 사 항 </div>
-          <div className="notselect"> 건 의 사 항 </div>
+          <Link to="/board" style={{ textDecorationLine: 'none' }}><div className="select"> 게 시 판 </div></Link>
+          <Link to="/notice" style={{ textDecorationLine: 'none' }}><div className="notselect"> 공 지 사 항 </div></Link>
+          <Link to="/suggestions" style={{ textDecorationLine: 'none' }}><div className="notselect"> 건 의 사 항 </div></Link>
         </div>
       </div>
 
@@ -42,7 +42,7 @@ function Board(props) {
           }
         </div>
       </div>
-
+      
       <button type="button" className="btn btn-success"><Link to="/board-write" style={{ textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}>글쓰기</Link></button>
     </> 
   )

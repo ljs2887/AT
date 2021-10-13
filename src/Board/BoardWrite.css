@@ -5,16 +5,20 @@
   gap: 30px;
   align-items: center;
 }
+
 .boardwrite_buttons {
   display: flex;
-  justify-content: flex-start;
-  flex-direction: row;
-  /* gap: 30px; */
+  justify-content: flex-end;
+  gap: 30px;
+  width: 70%;
 }
-
-.btn {
-  /* margin-left: 900px; */
-
+.btns {
+  margin: 0;
+  height: 40px;
+  width: 80px;
+  font-size: 20px;
+  padding: auto;
+  border-radius: 5px;
 }
 
 .btn-success {
