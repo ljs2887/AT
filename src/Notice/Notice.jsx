@@ -24,7 +24,7 @@ function Notice(props) {
       
       <div className="container" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <div className="notice_sum" style={{ alignSelf: 'flex-start', paddingLeft: '140px' }}>총 게시물 <span style={{ color: '#1fbe5f' }}>{ props.noticehits }</span>개</div>
-        <hr style = {{ border: 'solid 3px #898989', width: '80%', margin: '5px 0'}}/>
+        <hr style = {{ border: 'solid 3px #898989', width: '80%', margin: '5px 0 20px'}}/>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', justifyContent: 'flex-start', width: '80%', alignItems: 'center' }}>
           {
             props.noticetitle.map(function(a, i) {
