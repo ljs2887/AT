@@ -25,7 +25,7 @@ function Board(props) {
       </div>
       
       <div className="container" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <div className="board_sum" style={{ alignSelf: 'flex-start', paddingLeft: '140px' }}>총 게시물 <span style={{ color: '#1fbe5f' }}>1</span>개</div>
+        <div className="board_sum" style={{ alignSelf: 'flex-start', paddingLeft: '140px' }}>총 게시물 <span style={{ color: '#1fbe5f' }}>{ props.boardhits }</span>개</div>
         <hr style = {{ border: 'solid 3px #898989', width: '80%', margin: '5px 0'}}/>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', justifyContent: 'flex-start', width: '80%', alignItems: 'center' }}>
           {

@@ -1,0 +1,27 @@
+.suggestionswrite_lines {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+
+.suggestionswrite_buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 30px;
+  width: 70%;
+}
+.btns {
+  margin: 0;
+  height: 40px;
+  width: 80px;
+  font-size: 20px;
+  padding: auto;
+  border-radius: 5px;
+}
+
+.btn-success {
+  background-image: linear-gradient(to right, #1fbe5f 22%, #91ea8a 93%);
+  border: #91ea8a;
+}

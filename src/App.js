@@ -19,9 +19,18 @@ import Footer from './Footer/Footer';
 function App() {
 
   let [title, settitle] = useState(['게시판', '공지사항', '건의사항']);
-  let [boardtitle, setboardtitle] = useState(['내년에 곧 유치원생인데 이 동네에서 어디가 좋을까요?','ss']);
-  let [boardcontent, setboardcontent] = useState(['내년에 곧 유치원생이라서 유치원 보낼 곳 찾는게 힘드네요 요즘 사건도 많이 있다보니 안전한 곳으로 보내고 싶어서요 추천해줄 만한 곳이 있으신가요?','ss']);
-  let [boarddate, setboarddate] = useState(['2020-09-19','ss']);
+  let [boardtitle, setboardtitle] = useState(['내년에 곧 유치원생인데 이 동네에서 어디가 좋을까요?']);
+  let [boardcontent, setboardcontent] = useState(['내년에 곧 유치원생이라서 유치원 보낼 곳 찾는게 힘드네요 요즘 사건도 많이 있다보니 안전한 곳으로 보내고 싶어서요 추천해줄 만한 곳이 있으신가요?']);
+  let [boarddate, setboarddate] = useState(['2020-09-19']);
+  let boardhits = boardtitle.length;
+  let [noticetitle, setnoticetitle] = useState(['즐거운 한가위 되세요!', '이번주에는 토요일에도 분리수거 가능합니다!']);
+  let [noticecontent, setnoticecontent] = useState(['이번에 황금연휴인데 즐거운 한가위 되세요!', '이번주에는 토요일에도 분리수거 차가 왔다간다고 하네요.']);
+  let [noticedate, setnoticedate] = useState(['2020-09-19', '2020-09-10']);
+  let noticehits = noticetitle.length;
+  let [suggestionstitle, setsuggestionstitle] = useState(['현관 문 앞에 구토가 있어요.', '403호 건의']);
+  let [suggestionscontent, setsuggestionscontent] = useState(['오늘 저녁 쯤에 집에 들어오는데 현관문 옆에 누가 구토를 했네요 ㅠㅠ', '저희 집 천장에서 물이 떨어지네요! 바로 확인해주세요!!']);
+  let [suggestionsdate, setsuggestionsdate] = useState(['2020-09-13', '2020-09-10']);
+  let suggestionshits = suggestionstitle.length;
 
   return (
     <div className="App">
@@ -33,7 +42,7 @@ function App() {
         </Route>
 
         <Route path="/board">
-          <Board boardtitle={boardtitle} boardcontent={boardcontent} boarddate={boarddate} />
+          <Board boardhits={boardhits} boardtitle={boardtitle} boardcontent={boardcontent} boarddate={boarddate} />
         </Route>
 
         <Route path="/board-content">
@@ -45,11 +54,11 @@ function App() {
         </Route>
         
         <Route path="/notice">
-          <Notice />
+          <Notice noticehits = {noticehits} noticetitle={noticetitle} noticecontent={noticecontent} noticedate={noticedate} />
         </Route>
 
         <Route path="/notice-content">
-          <NoticeContent />
+          <NoticeContent noticetitle={noticetitle} noticecontent={noticecontent} noticedate={noticedate} />
         </Route>
 
         <Route path="/notice-write">
@@ -57,11 +66,11 @@ function App() {
         </Route>
 
         <Route path="/suggestions">
-          <Suggestions />
+          <Suggestions suggestionshits = {suggestionshits} suggestionstitle={suggestionstitle} suggestionscontent={suggestionscontent} suggestionsdate={suggestionsdate} />
         </Route>
 
         <Route path="/suggestions-content">
-          <SuggestionsContent />
+          <SuggestionsContent suggestionshits = {suggestionshits} suggestionstitle={suggestionstitle} suggestionscontent={suggestionscontent} suggestionsdate={suggestionsdate} />
         </Route>
 
         <Route path="/suggestions-write">

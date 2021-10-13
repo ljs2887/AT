@@ -1,0 +1,71 @@
+.suggestions_img {
+  width: 100%;
+  height: 360px;
+  background-image: url('../asset/img/suggestions_main_img.png');
+  background-position : center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.suggestions_title {
+  font-size: 30px;
+  font-weight: bold;
+  color: #000;
+  margin-top: 100px;
+}
+
+.suggestions_line {
+  width: 52px;
+  height: 7px;
+  background-color: #1fbe5f;
+  margin: auto;
+}
+
+.suggestions_sub {
+  font-size: 20px;
+  color: #000;
+}
+
+.suggestions_sum {
+  /* margin-left: -850px; */
+  font-weight: bold;
+}
+
+.suggestions_list_title {
+  font-size: 20px;
+  font-weight: 500;
+  text-align: left;
+  color: #000;
+  font-weight: bold;
+  /* margin: 10px 0 0 300px; */
+  align-self: flex-start;
+  padding-left: 30px;
+}
+
+.suggestions_list_content {
+  font-size: 14px;
+  text-align: left;
+  color: #000;
+  /* margin: 50px 0 0 300px; */
+  align-self: flex-start;
+  padding-left: 30px;
+}
+
+.suggestions_list_date {
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+  color: #000;
+  /* margin: 50px 0 0 300px; */
+  align-self: flex-start;
+  padding-left: 30px;
+}
+
+.btn {
+  margin-left: 900px;
+}
+
+.btn-success {
+  background-image: linear-gradient(to right, #1fbe5f 22%, #91ea8a 93%);
+  border: #91ea8a;
+}
