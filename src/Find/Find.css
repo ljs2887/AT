@@ -1,0 +1,43 @@
+.find_title {
+  font-size: 30px;
+  font-weight: bold;
+  color: #000;
+  margin-top: 100px;
+}
+
+.find_line {
+  width: 52px;
+  height: 7px;
+  background-color: #1fbe5f;
+  margin: auto;
+}
+
+.find_sub {
+  font-size: 20px;
+  color: #000;
+}
+
+.find_titlefind {
+  margin: 3em 0 0 0;
+  font-size: 30px;
+  font-weight: bold;
+  color: #4b4b4b;
+}
+
+.find_id_submit {
+  width: 350px;
+  height: 41px;
+  margin: 2em 0 1em 21em;
+  align-items: flex-start;
+  background-color: #7cdfa4;
+  border-color: #7cdfa4;
+}
+
+.find_pw_submit {
+  width: 350px;
+  height: 41px;
+  margin: 2em 0 1em 9em;
+  align-items: flex-start;
+  background-color: #7cdfa4;
+  border-color: #7cdfa4;
+}

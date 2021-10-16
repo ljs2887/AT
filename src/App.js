@@ -14,6 +14,8 @@ import Suggestions from './Suggestions/Suggestions';
 import SuggestionsContent from './Suggestions/SuggestionsContent';
 import SuggestionsWrite from './Suggestions/SuggestionsWrite';
 import Login from './Login/Login';
+import Find from './Find/Find';
+import Join from './Join/Join';
 import Footer from './Footer/Footer';
 
 function App() {
@@ -31,6 +33,7 @@ function App() {
   let [suggestionscontent, setsuggestionscontent] = useState(['오늘 저녁 쯤에 집에 들어오는데 현관문 옆에 누가 구토를 했네요 ㅠㅠ', '저희 집 천장에서 물이 떨어지네요! 바로 확인해주세요!!']);
   let [suggestionsdate, setsuggestionsdate] = useState(['2020-09-13', '2020-09-10']);
   let suggestionshits = suggestionstitle.length;
+  let [find, setfind] = useState(['아이디', '비밀번호'])
 
   return (
     <div className="App">
@@ -79,6 +82,14 @@ function App() {
 
         <Route path="/login">
           <Login />
+        </Route>
+
+        <Route path="/Find">
+          <Find find={find} />
+        </Route>
+
+        <Route path="/join">
+          <Join />
         </Route>
       </Switch>
 
