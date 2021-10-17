@@ -4,7 +4,10 @@ import { Link, Route, Switch, useHistory, useParams } from 'react-router-dom';
 import '../App.css';
 import './NoticeContent.css';
 
-function NoticeContent(props) {
+function NoticeContent(){
+
+  const [noticetitle, setnoticetitle] = useState(['즐거운 한가위 되세요!', '이번주에는 토요일에도 분리수거 가능합니다!']);
+
   return (
     <>
       <div>
@@ -29,7 +32,7 @@ function NoticeContent(props) {
 
           <div className="noticecontent_lists">
             <div className="noticecontent_title">
-              { props.noticetitle[0] }
+              { noticetitle[0] }
             </div>
             <div className="noticecontent_key">
               <div className="noticecontent_id">

@@ -3,7 +3,10 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link, Route, Switch } from 'react-router-dom';
 import './Main.css';
 
-function Main(props) {
+function Main() {
+
+  const [title, settitle] = useState(['게시판', '공지사항', '건의사항']);
+
   return (
     <>
       <div className="main_img"></div>
@@ -33,12 +36,12 @@ function Main(props) {
 
       <div style={{ display: 'flex', gap: '50px', justifyContent: 'center', marginTop: '80px' }}>
         {
-          props.title.map(function(a, i) {
+          title.map(function(a, i) {
             return(
               <>
                 <div className="main_introduce_box">
-                  <div className="main_introduce_title">빌라 { props.title[i] }</div>
-                  <div className="main_introduce_text">빌라의 { props.title[i] }에 </div>
+                  <div className="main_introduce_title">빌라 { title[i] }</div>
+                  <div className="main_introduce_text">빌라의 { title[i] }에 </div>
                   <div className="main_introduce_text">대해 알려드립니다.</div>
                   <div style={{ display: 'flex', justifyContent: 'flex-start', flexDirection: 'row', gap: '100px' }}>
                     <div className="main_introduce_img">

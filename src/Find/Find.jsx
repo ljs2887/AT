@@ -4,7 +4,10 @@ import { Link, Route, Switch, useHistory, useParams } from 'react-router-dom';
 import '../App.css';
 import './Find.css';
 
-function Find(props) {
+function Find() {
+
+  const [find, setfind] = useState(['아이디', '비밀번호'])
+
   return (
     <>
       <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexDirection: 'column' }}>
@@ -14,12 +17,12 @@ function Find(props) {
       </div>
       <div style={{ display: 'flex', gap: '20em' , justifyContent: 'flex-start', marginLeft: '20em' }}>
         {
-          props.find.map(function(a, i) {
+          find.map(function(a, i) {
             return(
               <>
               <div>
                 <div className="find_titlefind">
-                  {props.find[i]} 찾기
+                  {find[i]} 찾기
                 </div>
                 <hr style = {{ border: 'solid 1px #805050', width: '250%', margin: '1em 0'}}/>
               </div>
@@ -98,7 +101,7 @@ function Find(props) {
           </div>
 
           <Button className="find_pw_submit">
-            PW 찾기
+            <Link to="/ChangePassword" style={{ textDecorationLine: 'none', color: '#fff' }}>PW 찾기</Link>
           </Button>
         </div>
       </div>

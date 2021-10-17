@@ -4,9 +4,14 @@ import { Link, Route, Switch, useHistory, useParams } from 'react-router-dom';
 import '../App.css';
 import './Board.css';
 
-function Board(props) {
+function Board() {
 
-  let { id } = useParams();
+  const { id } = useParams();
+  const [boardtitle, setboardtitle] = useState(['내년에 곧 유치원생인데 이 동네에서 어디가 좋을까요?']);
+  const [boardcontent, setboardcontent] = useState(['내년에 곧 유치원생이라서 유치원 보낼 곳 찾는게 힘드네요 요즘 사건도 많이 있다보니 안전한 곳으로 보내고 싶어서요 추천해줄 만한 곳이 있으신가요?']);
+  const [boarddate, setboarddate] = useState(['2020-09-19']);
+  const boardhits = boardtitle.length;
+
   return (
     <>
       <div>
@@ -25,16 +30,16 @@ function Board(props) {
       </div>
       
       <div className="container" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <div className="board_sum" style={{ alignSelf: 'flex-start', paddingLeft: '140px' }}>총 게시물 <span style={{ color: '#1fbe5f' }}>{ props.boardhits }</span>개</div>
+        <div className="board_sum" style={{ alignSelf: 'flex-start', paddingLeft: '140px' }}>총 게시물 <span style={{ color: '#1fbe5f' }}>{ boardhits }</span>개</div>
         <hr style = {{ border: 'solid 3px #898989', width: '80%', margin: '5px 0 20px'}}/>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', justifyContent: 'flex-start', width: '80%', alignItems: 'center' }}>
           {
-            props.boardtitle.map(function(a, i) {
+            boardtitle.map(function(a, i) {
               return(
                 <>
-                  <div className="board_list_title" style={{ alignSelf: 'flex-start' }}>{ props.boardtitle[i] }</div>
-                  <div className="board_list_content"><Link to="/board-content" style={{ textDecorationLine: 'none', color: '#000' }}>{ props.boardcontent[i] }</Link></div>
-                  <div className="board_list_date">{ props.boarddate[i] }</div>
+                  <div className="board_list_title" style={{ alignSelf: 'flex-start' }}>{ boardtitle[i] }</div>
+                  <div className="board_list_content"><Link to="/board-content" style={{ textDecorationLine: 'none', color: '#000' }}>{ boardcontent[i] }</Link></div>
+                  <div className="board_list_date">{ boarddate[i] }</div>
                   <hr style = {{ border: 'solid 1px #805050', width: '100%', margin: '5px 0'}}/>
                 </>
               )

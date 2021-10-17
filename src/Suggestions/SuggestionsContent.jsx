@@ -4,7 +4,10 @@ import { Link, Route, Switch, useHistory, useParams } from 'react-router-dom';
 import '../App.css';
 import './SuggestionsContent.css';
 
-function SuggestionContent(props) {
+function SuggestionContent() {
+
+  const [suggestionstitle, setsuggestionstitle] = useState(['현관 문 앞에 구토가 있어요.', '403호 건의']);
+
   return (
     <>
       <div>
@@ -29,7 +32,7 @@ function SuggestionContent(props) {
 
           <div className="suggestionscontent_lists">
             <div className="suggestionscontent_title">
-              { props.suggestionstitle[1] }
+              { suggestionstitle[1] }
             </div>
             <div className="suggestionscontent_key">
               <div className="suggestionscontent_id">

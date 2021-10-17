@@ -4,7 +4,7 @@ import { Link, Route, Switch } from 'react-router-dom';
 import '../App.css';
 import './BoardContent.css';
 
-function BoardContent() {
+function BoardContent(props) {
   return (
       <>
         <div>
