@@ -4,6 +4,7 @@ import { Link, Route, Switch, useHistory, useParams } from 'react-router-dom';
 import '../App.css';
 import './SuggestionsContent.css';
 
+
 function SuggestionContent() {
 
   const [suggestionstitle, setsuggestionstitle] = useState(['현관 문 앞에 구토가 있어요.', '403호 건의']);

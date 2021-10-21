@@ -4,6 +4,7 @@ import { Link, Route, Switch, useHistory, useParams } from 'react-router-dom';
 import '../App.css';
 import './Suggestions.css';
 
+
 function Suggestion() {
   
   const [suggestionstitle, setsuggestionstitle] = useState(['현관 문 앞에 구토가 있어요.', '403호 건의']);
@@ -33,16 +34,14 @@ function Suggestion() {
         <hr style = {{ border: 'solid 3px #898989', width: '80%', margin: '5px 0 20px'}}/>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', justifyContent: 'flex-start', width: '80%', alignItems: 'center' }}>
           {
-            suggestionstitle.map(function(a, i) {
-              return(
+            suggestionstitle.map((a, i) => (
                 <>
                   <div className="suggestions_list_title" style={{ alignSelf: 'flex-start' }}>{ suggestionstitle[i] }</div>
                   <div className="suggestions_list_content"><Link to="/suggestions-content" style={{ textDecorationLine: 'none', color: '#000' }}>{ suggestionscontent[i] }</Link></div>
                   <div className="suggestions_list_date">{ suggestionsdate[i] }</div>
                   <hr style = {{ border: 'solid 1px #805050', width: '100%', margin: '5px 0'}}/>
                 </>
-              )
-            })
+              ))
           }
         </div>
       </div>

@@ -3,6 +3,7 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link, Route, Switch } from 'react-router-dom';
 import './BoardWrite.css';
 
+
 function BoardWrite() {
   return (
     <>

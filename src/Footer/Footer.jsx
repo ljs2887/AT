@@ -3,6 +3,7 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link, Route, Switch } from 'react-router-dom';
 import './Footer.css';
 
+
 function Footer() {
   return (
     <div style={{ backgroundColor:'#3e3e3e', marginTop: '100px' }}>

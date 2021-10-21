@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link, Route, Switch } from 'react-router-dom';
 import './Main.css';
 
@@ -36,16 +35,15 @@ function Main() {
 
       <div style={{ display: 'flex', gap: '50px', justifyContent: 'center', marginTop: '80px' }}>
         {
-          title.map(function(a, i) {
-            return(
+          title.map((a, i)=> (
               <>
-                <div className="main_introduce_box">
+                <div className="main_introduce_box" key={a}>
                   <div className="main_introduce_title">빌라 { title[i] }</div>
                   <div className="main_introduce_text">빌라의 { title[i] }에 </div>
                   <div className="main_introduce_text">대해 알려드립니다.</div>
                   <div style={{ display: 'flex', justifyContent: 'flex-start', flexDirection: 'row', gap: '100px' }}>
                     <div className="main_introduce_img">
-                      <img src={ "/image/main_introduce_" + (i+1) + ".png" } style={{ width: '90%', marginTop: '-5%', marginLeft: '20%' }}/>
+                      <img src={ `/image/main_introduce_${  i+1  }.png` } alt="a" style={{ width: '90%', marginTop: '-5%', marginLeft: '20%' }}/>
                     </div>
                     {
                       i === 0
@@ -65,8 +63,7 @@ function Main() {
                   </div>
                 </div>
               </>
-            )
-          })
+            ))
         }
       </div>
     </>

@@ -4,6 +4,7 @@ import { Link, Route, Switch, useHistory, useParams } from 'react-router-dom';
 import '../App.css';
 import './Notice.css';
 
+
 function Notice() {
 
   const [noticetitle, setnoticetitle] = useState(['즐거운 한가위 되세요!', '이번주에는 토요일에도 분리수거 가능합니다!']);
@@ -33,16 +34,14 @@ function Notice() {
         <hr style = {{ border: 'solid 3px #898989', width: '80%', margin: '5px 0 20px'}}/>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', justifyContent: 'flex-start', width: '80%', alignItems: 'center' }}>
           {
-            noticetitle.map(function(a, i) {
-              return(
+            noticetitle.map((a, i) => (
                 <>
                   <div className="notice_list_title" style={{ alignSelf: 'flex-start' }}>{ noticetitle[i] }</div>
                   <div className="notice_list_content"><Link to="/notice-content" style={{ textDecorationLine: 'none', color: '#000' }}>{ noticecontent[i] }</Link></div>
                   <div className="notice_list_date">{ noticedate[i] }</div>
                   <hr style = {{ border: 'solid 1px #805050', width: '100%', margin: '5px 0'}}/>
                 </>
-              )
-            })
+              ))
           }
         </div>
       </div>

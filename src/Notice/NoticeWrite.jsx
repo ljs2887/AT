@@ -3,6 +3,7 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link, Route, Switch } from 'react-router-dom';
 import './NoticeWrite.css';
 
+
 function NoticeWrite() {
   return (
     <>

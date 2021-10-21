@@ -34,16 +34,14 @@ function Board() {
         <hr style = {{ border: 'solid 3px #898989', width: '80%', margin: '5px 0 20px'}}/>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', justifyContent: 'flex-start', width: '80%', alignItems: 'center' }}>
           {
-            boardtitle.map(function(a, i) {
-              return(
+            boardtitle.map((a, i) => (
                 <>
                   <div className="board_list_title" style={{ alignSelf: 'flex-start' }}>{ boardtitle[i] }</div>
                   <div className="board_list_content"><Link to="/board-content" style={{ textDecorationLine: 'none', color: '#000' }}>{ boardcontent[i] }</Link></div>
                   <div className="board_list_date">{ boarddate[i] }</div>
                   <hr style = {{ border: 'solid 1px #805050', width: '100%', margin: '5px 0'}}/>
                 </>
-              )
-            })
+              ))
           }
         </div>
       </div>

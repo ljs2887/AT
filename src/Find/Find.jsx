@@ -4,6 +4,7 @@ import { Link, Route, Switch, useHistory, useParams } from 'react-router-dom';
 import '../App.css';
 import './Find.css';
 
+
 function Find() {
 
   const [find, setfind] = useState(['아이디', '비밀번호'])
@@ -17,8 +18,7 @@ function Find() {
       </div>
       <div style={{ display: 'flex', gap: '20em' , justifyContent: 'flex-start', marginLeft: '20em' }}>
         {
-          find.map(function(a, i) {
-            return(
+          find.map((a, i) => (
               <>
               <div>
                 <div className="find_titlefind">
@@ -27,8 +27,7 @@ function Find() {
                 <hr style = {{ border: 'solid 1px #805050', width: '250%', margin: '1em 0'}}/>
               </div>
               </>
-            )
-          })
+            ))
         }
       </div>
 
