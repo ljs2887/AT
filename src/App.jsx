@@ -1,6 +1,5 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
-import { Link, Route, Switch } from 'react-router-dom';
+import React, { lazy, Suspense } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
