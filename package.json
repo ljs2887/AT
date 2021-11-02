@@ -29,12 +29,14 @@
       "prettier"
     ],
     "rules": {
-      "no-unused-vars" : 0
+      "no-unused-vars": 0
     },
     "settings": {
       "import/resolver": {
         "node": {
-          "paths": ["src"]
+          "paths": [
+            "src"
+          ]
         }
       }
     }

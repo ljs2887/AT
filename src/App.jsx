@@ -1,9 +1,9 @@
 import React, { lazy, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
-import Header from './Header/Header';
-import Footer from './Footer/Footer';
-import Loding from './Loding';
+import Header from './Header/Header.jsx';
+import Footer from './Footer/Footer.jsx';
+import Loding from './Loding.jsx';
 
 const Main = lazy(() => import('./Main/Main'))
 const Board = lazy(() => import('./Board/Board'))

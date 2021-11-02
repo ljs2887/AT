@@ -1,10 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './BoardWrite.css';
-
+import axios from 'axios';
 
 function BoardWrite() {
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
+  const [user, setUser] = useState('')
+
+  const onChangeTitle = (e) => {
+    setTitle(e.target.value)
+  }
+
+  const onChangeContent = (e) => {
+    setContent(e.target.value)
+  }
+
+  const onChangeUser = (e) => {
+    setUser(e.target.value)
+  }
+
+  const onSubmitForm = async (e) => {
+    e.preventDefault()
+    const boardInfo = {
+      title,
+      content,
+      user
+    }
+    try {
+      const { data } = await axios.post('http://localhost:5000/board', boardInfo)
+      console.log(data);
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <>
       <div>
@@ -34,7 +64,7 @@ function BoardWrite() {
               style={{ width: '80px', fontSize: '20px', paddingTop: '10px', fontWeight: 'bold' }}>
                 제목
             </label>
-            <input 
+            <input value = { title } onChange = { onChangeTitle }
               type="text" 
               class="form-control" 
               id="exampleFormControlInput1" 
@@ -53,31 +83,11 @@ function BoardWrite() {
               style={{ width: '80px', fontSize: '20px', paddingTop: '10px', fontWeight: 'bold' }}>
                 ID
             </label>
-            <input 
+            <input value = { user } onChange = { onChangeUser }
               type="text" 
               className="form-control" 
-              id="exampleFormControlInput1" 
-              value="신사동 주민"
-              disabled
-              style={{ height: '50px' }} />
-          </div>
-
-          <div className="boardwrite_lines">
-            <hr style = {{ border: 'solid 1px #805050', width: '75%', margin: '10px 0 20px'}}/>
-          </div>
-
-          <div className="mb-3" style={{ display: 'flex', gap: '10px', width: '80%', paddingLeft: '15%' }}>
-            <label 
-              htmlFor="exampleFormControlInput1" 
-              className="form-label" 
-              style={{ width: '80px', fontSize: '20px', paddingTop: '10px', fontWeight: 'bold' }}>
-                날짜
-            </label>
-            <input 
-              type="date" 
-              className="form-control" 
-              id="exampleFormControlInput1" 
-              placeholder="name@example.com"
+              id="exampleFormControlInput1"
+              placeholder="아이디를 입력해주세요"
               style={{ height: '50px' }} />
           </div>
 
@@ -92,7 +102,7 @@ function BoardWrite() {
               style={{ width: '80px', fontSize: '20px', paddingTop: '10px', fontWeight: 'bold' }}>
                 내용
             </label>
-            <textarea 
+            <textarea value = { content } onChange = { onChangeContent }
               type="text"
               class="form-control" 
               id="exampleFormControlInput1" 
@@ -126,9 +136,9 @@ function BoardWrite() {
             <Link to="/board" 
             style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}>취 소</Link>
           </button>
-          <button type="button" className="btns btn-success">
-            <Link to="/board" 
-            style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}>확 인</Link>
+          <button type="button" className="btns btn-success" style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }} 
+          onClick = { onSubmitForm }>
+            확 인
           </button>
         </div>
     </>
