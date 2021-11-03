@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import './BoardWrite.css';
-import axios from 'axios';
+import { createPost } from '../api';
 
-function BoardWrite() {
+ const BoardWrite = withRouter(props => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [user, setUser] = useState('')
@@ -28,8 +28,8 @@ function BoardWrite() {
       user
     }
     try {
-      const { data } = await axios.post('http://localhost:5000/board', boardInfo)
-      console.log(data);
+      const { data } = await createPost(boardInfo)
+      props.history.push('/board')
     } catch (error) {
       console.error(error)
     }
@@ -133,16 +133,17 @@ function BoardWrite() {
 
         <div className="container boardwrite_buttons">
           <button type="button" className="btns btn-success">
-            <Link to="/board" 
-            style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}>취 소</Link>
+            <Link to="/board" style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}>
+              취 소</Link>
           </button>
-          <button type="button" className="btns btn-success" style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }} 
-          onClick = { onSubmitForm }>
-            확 인
+          
+          <button type="button" className="btns btn-success"
+            style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}onClick = { onSubmitForm }>
+              확 인
           </button>
         </div>
     </>
   )
-}
+})
 
 export default BoardWrite;

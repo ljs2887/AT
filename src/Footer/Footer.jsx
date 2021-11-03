@@ -14,7 +14,7 @@ function Footer() {
           <Link to="/board" style={{textDecorationLine: 'none', color: '#909090', fontWeight: 'bold'}}>게시판</Link>
           <Link to="/notice" style={{textDecorationLine: 'none', color: '#909090', fontWeight: 'bold'}}>공지사항</Link>
           <Link to="/suggestions" style={{textDecorationLine: 'none', color: '#909090', fontWeight: 'bold'}}>건의사항</Link>
-          <Link to="/login" style={{textDecorationLine: 'none', color: '#909090', fontWeight: 'bold'}}>로그인</Link>
+          {/* <Link to="/login" style={{textDecorationLine: 'none', color: '#909090', fontWeight: 'bold'}}>로그인</Link> */}
         </ul>
         <Navbar.Brand> <Link to="/"> <img src="image/AT.png" style={{ width: '100px' }}></img> </Link> </Navbar.Brand>
         <hr style = {{ border: 'solid 1px #fff', width: '100%'}}/>

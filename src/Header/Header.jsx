@@ -14,7 +14,7 @@ function Header() {
       <Nav.Link> <Link to="/board" style={{display : 'flex', justifyContent: 'space-between', flexDirection: 'row', textDecorationLine: 'none', color: '#000', fontWeight: 'bold' }}>게시판</Link></Nav.Link>
       <Nav.Link> <Link to="/notice" style={{display : 'flex', justifyContent: 'space-between', flexDirection: 'row', textDecorationLine: 'none', color: '#000', fontWeight: 'bold' }}>공지사항</Link></Nav.Link>  
       <Nav.Link> <Link to="/suggestions" style={{display : 'flex', justifyContent: 'space-between', flexDirection: 'row', textDecorationLine: 'none', color: '#000', fontWeight: 'bold' }}>건의사항</Link></Nav.Link>
-      <Nav.Link> <Link to="/login" style={{display : 'flex', justifyContent: 'space-between', flexDirection: 'row', textDecorationLine: 'none', color: '#000', fontWeight: 'bold' }}>로그인</Link></Nav.Link>
+      {/* <Nav.Link> <Link to="/login" style={{display : 'flex', justifyContent: 'space-between', flexDirection: 'row', textDecorationLine: 'none', color: '#000', fontWeight: 'bold' }}>로그인</Link></Nav.Link> */}
     </Nav>
     </Container>
   </Navbar>

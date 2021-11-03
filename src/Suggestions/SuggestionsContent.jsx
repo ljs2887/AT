@@ -57,10 +57,18 @@ function SuggestionContent() {
             <hr style = {{ border: 'solid 3px #898989', width: '80%', margin: '150px 0 20px'}}/>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'flex-end', marginRight: '200px' }}>
-            <button type="button" className="btns btn-success">
+          <div style={{ display: 'flex', justifyContent: 'flex-end', marginRight: '200px', gap : '20px' }}>
+          <button type="button" className="btns btn-success">
               <Link to="/suggestions" 
               style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}>목 록</Link>
+            </button>
+            <button type="button" className="btns btn-success">
+              <Link to="/suggestions" 
+              style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}>수 정</Link>
+            </button>
+            <button type="button" className="btns btn-success">
+              <Link to="/suggestions" 
+              style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}>삭 제</Link>
             </button>
           </div>
 
