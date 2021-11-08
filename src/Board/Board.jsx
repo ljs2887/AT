@@ -16,6 +16,8 @@ function Board() {
     async () => {
       try {
         const { data } = await patchPost()
+        // console.log(res);
+        // console.log(res.data);
         setBoardTitle(data.map(v => v.title))
         setBoardContent(data.map(v => v.content))
         setBoardDate(data.map(v => v.date))

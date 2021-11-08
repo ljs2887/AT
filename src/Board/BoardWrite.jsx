@@ -28,7 +28,7 @@ import { createPost } from '../api';
       user
     }
     try {
-      const { data } = await createPost(boardInfo)
+      await createPost(boardInfo)
       props.history.push('/board')
     } catch (error) {
       console.error(error)
@@ -138,7 +138,7 @@ import { createPost } from '../api';
           </button>
           
           <button type="button" className="btns btn-success"
-            style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}onClick = { onSubmitForm }>
+            style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }} onClick = { onSubmitForm }>
               확 인
           </button>
         </div>
