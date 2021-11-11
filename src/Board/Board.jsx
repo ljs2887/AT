@@ -9,8 +9,9 @@ function Board() {
   const [boardTitle, setBoardTitle] = useState([]);
   const [boardContent, setBoardContent] = useState([]);
   const [boardDate, setBoardDate] = useState([]);
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState([]);
   const boardHits = boardTitle.length;
+  const [postId, setPostId] = useState([]);
 
   const boardPost = useCallback(
     async () => {
@@ -18,6 +19,7 @@ function Board() {
         const { data } = await patchPost()
         // console.log(res);
         // console.log(res.data);
+        setPostId(data.map(v => v.postId))
         setBoardTitle(data.map(v => v.title))
         setBoardContent(data.map(v => v.content))
         setBoardDate(data.map(v => v.date))
@@ -58,7 +60,7 @@ function Board() {
             boardTitle.map((a, i) => (
                 <>
                   <div className="board_list_title" style={{ alignSelf: 'flex-start' }}>{ boardTitle[i] }</div>
-                  <div className="board_list_content"><Link to="/board-content" style={{ textDecorationLine: 'none', color: '#000' }}>{ boardContent[i] }</Link></div>
+                  <div className="board_list_content"><Link to={`/board-content/${ postId[i] }`} style={{ textDecorationLine: 'none', color: '#000' }}>{ boardContent[i] }</Link></div>
                   <div className="board_list_date">{ boardDate[i] }</div>
                   <hr style = {{ border: 'solid 1px #805050', width: '100%', margin: '5px 0'}}/>
                 </>

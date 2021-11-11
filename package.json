@@ -30,7 +30,9 @@
       "prettier"
     ],
     "rules": {
-      "no-unused-vars": 0
+      "no-unused-vars": 0,
+      "no-alert": 0,
+      "no-restricted-globals": ["off"]
     },
     "settings": {
       "import/resolver": {

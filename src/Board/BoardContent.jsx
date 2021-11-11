@@ -1,11 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link, Route, Switch } from 'react-router-dom';
 import '../App.css';
 import './BoardContent.css';
-
+import { patchOnePost, deleteOnePost } from '../api'
 
 function BoardContent(props) {
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [user, setUser] = useState('');
+  const [date, setDate] = useState('');
+  const { id } = props.match.params
+
+  const boardOnePost = useCallback(
+    async () => {
+      try {
+        const { data } = await patchOnePost(id)
+        setTitle( data.title )
+        setContent( data.content )
+        setUser( data.user )
+        setDate( data.date )
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [id],
+  )
+
+  useEffect(() => {
+    boardOnePost()
+  }, [boardOnePost])
+
+  const onClickDelete = async () => {
+    if(window.confirm("정말 삭제하시겠어요?")) {
+      try {
+        await deleteOnePost(id)
+        props.history.push('/board')
+      } catch (error) {
+        console.error(error)
+      }
+    } 
+  }
+
   return (
       <>
         <div>
@@ -30,11 +66,11 @@ function BoardContent(props) {
 
           <div className="boardcontent_lists">
             <div className="boardcontent_title">
-              내년에 곧 유치원생인데 이 동네에서 어디가 좋을까요??
+              { title }
             </div>
             <div className="boardcontent_key">
               <div className="boardcontent_id">
-                신사동주민
+                { user }
               </div>
               <div className="boardcontent_hits">
                 조회수 4
@@ -43,7 +79,7 @@ function BoardContent(props) {
                 댓글 1개
               </div>
               <div className="boardcontent_date">
-                2019-09-10
+                { date }
               </div>
             </div>
             <div className="boardcontent_lines">
@@ -52,8 +88,7 @@ function BoardContent(props) {
           </div>
 
           <div className="boardcontent_content">
-            내년에 곧 유치원생이라서 유치원 보낼 곳 찾는게 힘드네요 요즘 사건도 많이 있다보니 안전한 곳으로 보내고 싶어서요 
-추천해줄 만한 곳이 있으신가요?
+            { content }
           </div>
 
           <div className="boardcontent_lines">
@@ -65,10 +100,12 @@ function BoardContent(props) {
               <Link to="/board" 
               style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}>목 록</Link>
             </button>
-            <button type="button" className="btns btn-success" style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }} >
-              수 정
+            <button type="button" className="btns btn-success">
+              <Link to={`/board-update/${ id }`}
+              style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}>수 정</Link>
             </button>
-            <button type="button" className="btns btn-success" style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }} >
+            <button type="button" className="btns btn-success" style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}
+            onClick={ onClickDelete } >
               삭 제
             </button>
           </div>

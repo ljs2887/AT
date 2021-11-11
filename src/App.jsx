@@ -9,6 +9,7 @@ const Main = lazy(() => import('./Main/Main'))
 const Board = lazy(() => import('./Board/Board'))
 const BoardContent = lazy(() => import('./Board/BoardContent'))
 const BoardWrite = lazy(() => import('./Board/BoardWrite'))
+const BoardUpdate = lazy(() => import('./Board/BoardUpdate'))
 const Notice = lazy(() => import('./Notice/Notice'))
 const NoticeContent = lazy(() => import('./Notice/NoticeContent'))
 const NoticeWrite = lazy(() => import('./Notice/NoticeWrite'))
@@ -29,8 +30,9 @@ function App() {
       <Switch>
         <Suspense fallback={ <Loding/> }>
           <Route path="/board" component={Board} />
-          <Route path="/board-content" component={BoardContent} />
-          <Route path="/board-write" component={BoardWrite} />        
+          <Route path="/board-content/:id" component={BoardContent} />
+          <Route path="/board-write" component={BoardWrite} />     
+          <Route path="/board-update/:id" component={BoardUpdate} />        
           <Route path="/notice" component={Notice} />
           <Route path="/notice-content" component={NoticeContent} />
           <Route path="/notice-write" component={NoticeWrite} />
