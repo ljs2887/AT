@@ -5,11 +5,12 @@ const instance = axios.create({
 })
 
 // 아래의 board는 프론트가 아닌 백안의 router/board 입니다.
-function createPost(boardInfo) {
+function createBoardPost(boardInfo) {
+	// 리액트에서 백엔드로 데이터를 보내줌
 	return instance.post('/board', boardInfo)
 }
 
-function patchPost() {
+function patchBoardPost() {
 	return instance.get('/board')
 }
 
@@ -25,4 +26,20 @@ function updateOnePost(id, boardInfo) {
 	return instance.put(`/board/${id}`, boardInfo)
 }
 
-export { createPost, patchPost, patchOnePost, deleteOnePost, updateOnePost }
+function createNoticePost(noticeInfo) {
+	return instance.post('/notice', noticeInfo)
+}
+
+function patchNoticePost() {
+	return instance.get('/notice')
+}
+
+export {
+	createBoardPost,
+	patchBoardPost,
+	patchOnePost,
+	deleteOnePost,
+	updateOnePost,
+	createNoticePost,
+	patchNoticePost
+}

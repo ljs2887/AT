@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import './BoardWrite.css';
-import { createPost } from '../api';
+import { createBoardPost } from '../api';
 
  const BoardWrite = withRouter(props => {
-  const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
-  const [user, setUser] = useState('')
+  const [boardTitle, setBoardTitle] = useState('')
+  const [boardContent, setBoardContent] = useState('')
+  const [boardUser, setBoardUser] = useState('')
 
-  const onChangeTitle = (e) => {
-    setTitle(e.target.value)
+  const onChangeBoardTitle = (e) => {
+    setBoardTitle(e.target.value)
   }
 
-  const onChangeContent = (e) => {
-    setContent(e.target.value)
+  const onChangeBoardContent = (e) => {
+    setBoardContent(e.target.value)
   }
 
-  const onChangeUser = (e) => {
-    setUser(e.target.value)
+  const onChangeBoardUser = (e) => {
+    setBoardUser(e.target.value)
   }
 
-  const onSubmitForm = async (e) => {
+  const onSubmitBoardForm = async (e) => {
     e.preventDefault()
     const boardInfo = {
-      title,
-      content,
-      user
+      title: boardTitle,
+      content: boardContent,
+      user: boardUser
     }
     try {
-      await createPost(boardInfo)
+      await createBoardPost(boardInfo)
       props.history.push('/board')
     } catch (error) {
       console.error(error)
@@ -64,7 +64,7 @@ import { createPost } from '../api';
               style={{ width: '80px', fontSize: '20px', paddingTop: '10px', fontWeight: 'bold' }}>
                 제목
             </label>
-            <input value = { title } onChange = { onChangeTitle }
+            <input value = { boardTitle } onChange = { onChangeBoardTitle }
               type="text" 
               class="form-control" 
               id="exampleFormControlInput1" 
@@ -83,7 +83,7 @@ import { createPost } from '../api';
               style={{ width: '80px', fontSize: '20px', paddingTop: '10px', fontWeight: 'bold' }}>
                 ID
             </label>
-            <input value = { user } onChange = { onChangeUser }
+            <input value = { boardUser } onChange = { onChangeBoardUser } 
               type="text" 
               className="form-control" 
               id="exampleFormControlInput1"
@@ -102,7 +102,7 @@ import { createPost } from '../api';
               style={{ width: '80px', fontSize: '20px', paddingTop: '10px', fontWeight: 'bold' }}>
                 내용
             </label>
-            <textarea value = { content } onChange = { onChangeContent }
+            <textarea value = { boardContent } onChange = { onChangeBoardContent }
               type="text"
               class="form-control" 
               id="exampleFormControlInput1" 
@@ -138,7 +138,7 @@ import { createPost } from '../api';
           </button>
           
           <button type="button" className="btns btn-success"
-            style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }} onClick = { onSubmitForm }>
+            style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }} onClick = { onSubmitBoardForm }>
               확 인
           </button>
         </div>

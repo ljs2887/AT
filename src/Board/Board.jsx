@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { patchPost } from '../api';
+import { patchBoardPost } from '../api';
 import '../App.css';
 import './Board.css';
 
@@ -11,15 +11,15 @@ function Board() {
   const [boardDate, setBoardDate] = useState([]);
   const [user, setUser] = useState([]);
   const boardHits = boardTitle.length;
-  const [postId, setPostId] = useState([]);
+  const [boardPostId, setBoardPostId] = useState([]);
 
   const boardPost = useCallback(
     async () => {
       try {
-        const { data } = await patchPost()
+        const { data } = await patchBoardPost()
         // console.log(res);
         // console.log(res.data);
-        setPostId(data.map(v => v.postId))
+        setBoardPostId(data.map(v => v.postId))
         setBoardTitle(data.map(v => v.title))
         setBoardContent(data.map(v => v.content))
         setBoardDate(data.map(v => v.date))
@@ -60,7 +60,7 @@ function Board() {
             boardTitle.map((a, i) => (
                 <>
                   <div className="board_list_title" style={{ alignSelf: 'flex-start' }}>{ boardTitle[i] }</div>
-                  <div className="board_list_content"><Link to={`/board-content/${ postId[i] }`} style={{ textDecorationLine: 'none', color: '#000' }}>{ boardContent[i] }</Link></div>
+                  <div className="board_list_content"><Link to={`/board-content/${ boardPostId[i] }`} style={{ textDecorationLine: 'none', color: '#000' }}>{ boardContent[i] }</Link></div>
                   <div className="board_list_date">{ boardDate[i] }</div>
                   <hr style = {{ border: 'solid 1px #805050', width: '100%', margin: '5px 0'}}/>
                 </>

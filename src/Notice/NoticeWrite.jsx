@@ -1,10 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
-import { Link, Route, Switch } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import './NoticeWrite.css';
+import { createNoticePost } from '../api';
 
+const NoticeWrite = withRouter(props => {
+  const [noticeTitle, setNoticeTitle] = useState('')
+  const [noticeContent, setNoticeContent] = useState('')
+  const [noticeUser, setNoticeUser] = useState('')
 
-function NoticeWrite() {
+  const onChangeNoticeTitle = (e) => {
+    setNoticeTitle(e.target.value)
+  }
+
+  const onChangeNoticeContent = (e) => {
+    setNoticeContent(e.target.value)
+  }
+
+  const onChangeNoticeUser = (e) => {
+    setNoticeUser(e.target.value)
+  }
+
+  const onSubmitNoticeForm = async (e) => {
+    e.preventDefault()
+    const boardInfo = {
+      // 리액트에서 서버로 보내주는 타이틀: 유스스테이트에서 받아오는 타이틀
+      title: noticeTitle,
+      content: noticeContent,
+      user: noticeUser
+    }
+    try {
+      await createNoticePost(boardInfo)
+      props.history.push('/notice')
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <>
       <div>
@@ -34,7 +65,7 @@ function NoticeWrite() {
               style={{ width: '80px', fontSize: '20px', paddingTop: '10px', fontWeight: 'bold' }}>
                 제목
             </label>
-            <input 
+            <input value = { noticeTitle } onChange = { onChangeNoticeTitle }
               type="text" 
               class="form-control" 
               id="exampleFormControlInput1" 
@@ -53,31 +84,11 @@ function NoticeWrite() {
               style={{ width: '80px', fontSize: '20px', paddingTop: '10px', fontWeight: 'bold' }}>
                 ID
             </label>
-            <input 
+            <input value = { noticeContent } onChange = { onChangeNoticeContent }
               type="text" 
               className="form-control" 
               id="exampleFormControlInput1" 
-              value="신사동 주민"
-              disabled
-              style={{ height: '50px' }} />
-          </div>
-
-          <div className="noticewrite_lines">
-            <hr style = {{ border: 'solid 1px #805050', width: '75%', margin: '10px 0 20px'}}/>
-          </div>
-
-          <div className="mb-3" style={{ display: 'flex', gap: '10px', width: '80%', paddingLeft: '15%' }}>
-            <label 
-              htmlFor="exampleFormControlInput1" 
-              className="form-label" 
-              style={{ width: '80px', fontSize: '20px', paddingTop: '10px', fontWeight: 'bold' }}>
-                날짜
-            </label>
-            <input 
-              type="date" 
-              className="form-control" 
-              id="exampleFormControlInput1" 
-              placeholder="name@example.com"
+              placeholder="아이디를 입력해주세요"
               style={{ height: '50px' }} />
           </div>
 
@@ -92,7 +103,7 @@ function NoticeWrite() {
               style={{ width: '80px', fontSize: '20px', paddingTop: '10px', fontWeight: 'bold' }}>
                 내용
             </label>
-            <textarea 
+            <textarea value = { noticeUser } onChange = { onChangeNoticeUser }
               type="text"
               class="form-control" 
               id="exampleFormControlInput1" 
@@ -128,11 +139,11 @@ function NoticeWrite() {
           </button>
           <button type="button" className="btns btn-success">
             <Link to="/notice" 
-            style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}>확 인</Link>
+            style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }} onClick = { onSubmitNoticeForm }>확 인</Link>
           </button>
         </div>
     </>
   )
-}
+})
 
 export default NoticeWrite;

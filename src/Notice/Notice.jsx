@@ -1,16 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
-import { Link, Route, Switch, useHistory, useParams } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { patchNoticePost } from '../api';
 import '../App.css';
 import './Notice.css';
 
 
 function Notice() {
+  const { id } = useParams();
+  const [noticeTitle, setNoticeTitle] = useState([]);
+  const [noticeContent, setNoticeContent] = useState([]);
+  const [noticeDate, setNoticeDate] = useState([]);
+  const [user, setUser] = useState([]);
+  const noticeHits = noticeTitle.length;
+  const [postId, setPostId] = useState([]);
 
-  const [noticetitle, setnoticetitle] = useState(['즐거운 한가위 되세요!', '이번주에는 토요일에도 분리수거 가능합니다!']);
-  const [noticecontent, setnoticecontent] = useState(['이번에 황금연휴인데 즐거운 한가위 되세요!', '이번주에는 토요일에도 분리수거 차가 왔다간다고 하네요.']);
-  const [noticedate, setnoticedate] = useState(['2020-09-19', '2020-09-10']);
-  const noticehits = noticetitle.length;
+  const noticePost = useCallback(
+    async () => {
+      try {
+        const { data } = await patchNoticePost()
+        setPostId(data.map(v => v.postId))
+        setNoticeTitle(data.map(v => v.title))
+        setNoticeContent(data.map(v => v.content))
+        setNoticeDate(data.map(v => v.date))
+        setUser(data.map(v => v.user))
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [],
+  )
+
+  useEffect(() => {
+    noticePost()
+  }, [noticePost])
 
   return (
     <>
@@ -30,15 +52,15 @@ function Notice() {
       </div>
       
       <div className="container" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <div className="notice_sum" style={{ alignSelf: 'flex-start', paddingLeft: '140px' }}>총 게시물 <span style={{ color: '#1fbe5f' }}>{ noticehits }</span>개</div>
+        <div className="notice_sum" style={{ alignSelf: 'flex-start', paddingLeft: '140px' }}>총 게시물 <span style={{ color: '#1fbe5f' }}>{ noticeHits }</span>개</div>
         <hr style = {{ border: 'solid 3px #898989', width: '80%', margin: '5px 0 20px'}}/>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', justifyContent: 'flex-start', width: '80%', alignItems: 'center' }}>
           {
-            noticetitle.map((a, i) => (
+            noticeTitle.map((a, i) => (
                 <>
-                  <div className="notice_list_title" style={{ alignSelf: 'flex-start' }}>{ noticetitle[i] }</div>
-                  <div className="notice_list_content"><Link to="/notice-content" style={{ textDecorationLine: 'none', color: '#000' }}>{ noticecontent[i] }</Link></div>
-                  <div className="notice_list_date">{ noticedate[i] }</div>
+                  <div className="notice_list_title" style={{ alignSelf: 'flex-start' }}>{ noticeTitle[i] }</div>
+                  <div className="notice_list_content"><Link to="/notice-content" style={{ textDecorationLine: 'none', color: '#000' }}>{ noticeContent[i] }</Link></div>
+                  <div className="notice_list_date">{ noticeDate[i] }</div>
                   <hr style = {{ border: 'solid 1px #805050', width: '100%', margin: '5px 0'}}/>
                 </>
               ))
