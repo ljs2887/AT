@@ -12,13 +12,13 @@ function Notice() {
   const [noticeDate, setNoticeDate] = useState([]);
   const [user, setUser] = useState([]);
   const noticeHits = noticeTitle.length;
-  const [postId, setPostId] = useState([]);
+  const [noticePostId, setNoticePostId] = useState([]);
 
   const noticePost = useCallback(
     async () => {
       try {
         const { data } = await patchNoticePost()
-        setPostId(data.map(v => v.postId))
+        setNoticePostId(data.map(v => v.postId))
         setNoticeTitle(data.map(v => v.title))
         setNoticeContent(data.map(v => v.content))
         setNoticeDate(data.map(v => v.date))
@@ -59,7 +59,7 @@ function Notice() {
             noticeTitle.map((a, i) => (
                 <>
                   <div className="notice_list_title" style={{ alignSelf: 'flex-start' }}>{ noticeTitle[i] }</div>
-                  <div className="notice_list_content"><Link to="/notice-content" style={{ textDecorationLine: 'none', color: '#000' }}>{ noticeContent[i] }</Link></div>
+                  <div className="notice_list_content"><Link to={`/notice-content/${ noticePostId[i] }`} style={{ textDecorationLine: 'none', color: '#000' }}>{ noticeContent[i] }</Link></div>
                   <div className="notice_list_date">{ noticeDate[i] }</div>
                   <hr style = {{ border: 'solid 1px #805050', width: '100%', margin: '5px 0'}}/>
                 </>

@@ -14,11 +14,11 @@ function patchBoardPost() {
 	return instance.get('/board')
 }
 
-function patchOnePost(id) {
+function patchBoardOnePost(id) {
 	return instance.get(`/board/${id}`)
 }
 
-function deleteOnePost(id) {
+function boardDeleteOnePost(id) {
 	return instance.delete(`/board/${id}`)
 }
 
@@ -34,12 +34,26 @@ function patchNoticePost() {
 	return instance.get('/notice')
 }
 
+function patchNoticeOnePost(id) {
+	return instance.get(`/notice/${id}`)
+}
+
+function noticeDeleteOne(id) {
+	return instance.delete(`/notice/${id}`)
+}
+
+function noticeUpdateOne(id, boardInfo) {
+	return instance.put(`/notice/${id}`, boardInfo)
+}
 export {
 	createBoardPost,
 	patchBoardPost,
-	patchOnePost,
-	deleteOnePost,
+	patchBoardOnePost,
+	boardDeleteOnePost,
 	updateOnePost,
 	createNoticePost,
-	patchNoticePost
+	patchNoticePost,
+	patchNoticeOnePost,
+	noticeDeleteOne,
+	noticeUpdateOne
 }

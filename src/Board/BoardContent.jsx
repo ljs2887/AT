@@ -1,25 +1,24 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../App.css';
 import './BoardContent.css';
-import { patchOnePost, deleteOnePost } from '../api'
+import { patchBoardOnePost, boardDeleteOnePost } from '../api'
 
 function BoardContent(props) {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [user, setUser] = useState('');
-  const [date, setDate] = useState('');
+  const [boardTitle, setBoardTitle] = useState('');
+  const [boardContent, setBoardContent] = useState('');
+  const [boardUser, setBoardUser] = useState('');
+  const [boardDate, setBoardDate] = useState('');
   const { id } = props.match.params
 
   const boardOnePost = useCallback(
     async () => {
       try {
-        const { data } = await patchOnePost(id)
-        setTitle( data.title )
-        setContent( data.content )
-        setUser( data.user )
-        setDate( data.date )
+        const { data } = await patchBoardOnePost(id)
+        setBoardTitle( data.title )
+        setBoardContent( data.content )
+        setBoardUser( data.user )
+        setBoardDate( data.date )
       } catch (error) {
         console.error(error);
       }
@@ -31,10 +30,10 @@ function BoardContent(props) {
     boardOnePost()
   }, [boardOnePost])
 
-  const onClickDelete = async () => {
+  const onBoardClickDelete = async () => {
     if(window.confirm("정말 삭제하시겠어요?")) {
       try {
-        await deleteOnePost(id)
+        await boardDeleteOnePost(id)
         props.history.push('/board')
       } catch (error) {
         console.error(error)
@@ -66,11 +65,11 @@ function BoardContent(props) {
 
           <div className="boardcontent_lists">
             <div className="boardcontent_title">
-              { title }
+              { boardTitle }
             </div>
             <div className="boardcontent_key">
               <div className="boardcontent_id">
-                { user }
+                { boardUser }
               </div>
               <div className="boardcontent_hits">
                 조회수 4
@@ -79,7 +78,7 @@ function BoardContent(props) {
                 댓글 1개
               </div>
               <div className="boardcontent_date">
-                { date }
+                { boardDate }
               </div>
             </div>
             <div className="boardcontent_lines">
@@ -88,7 +87,7 @@ function BoardContent(props) {
           </div>
 
           <div className="boardcontent_content">
-            { content }
+            { boardContent }
           </div>
 
           <div className="boardcontent_lines">
@@ -105,7 +104,7 @@ function BoardContent(props) {
               style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}>수 정</Link>
             </button>
             <button type="button" className="btns btn-success" style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}
-            onClick={ onClickDelete } >
+            onClick={ onBoardClickDelete } >
               삭 제
             </button>
           </div>

@@ -13,6 +13,7 @@ const BoardUpdate = lazy(() => import('./Board/BoardUpdate'))
 const Notice = lazy(() => import('./Notice/Notice'))
 const NoticeContent = lazy(() => import('./Notice/NoticeContent'))
 const NoticeWrite = lazy(() => import('./Notice/NoticeWrite'))
+const NoticeUpdate = lazy(() => import('./Notice/NoticeUpdate'))
 const Suggestions = lazy(() => import('./Suggestions/Suggestions'))
 const SuggestionsContent = lazy(() => import('./Suggestions/SuggestionsContent'))
 const SuggestionsWrite = lazy(() => import('./Suggestions/SuggestionsWrite'))
@@ -34,8 +35,9 @@ function App() {
           <Route path="/board-write" component={BoardWrite} />     
           <Route path="/board-update/:id" component={BoardUpdate} />        
           <Route path="/notice" component={Notice} />
-          <Route path="/notice-content" component={NoticeContent} />
+          <Route path="/notice-content/:id" component={NoticeContent} />
           <Route path="/notice-write" component={NoticeWrite} />
+          <Route path="/notice-update/:id" component={NoticeUpdate} />      
           <Route path="/suggestions" component={Suggestions} />
           <Route path="/suggestions-content" component={SuggestionsContent} />
           <Route path="/suggestions-write" component={SuggestionsWrite} />

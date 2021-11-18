@@ -1,13 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
-import { Link, Route, Switch, useHistory, useParams } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import '../App.css';
 import './NoticeContent.css';
+import { patchNoticeOnePost, noticeDeleteOne } from '../api'
 
+function NoticeContent(props){
+  const [noticetitle, setNoticetitle] = useState('');
+  const [noticeContent, setNoticeContent] = useState('')
+  const [noticeUser, setNoticeUser] = useState('')
+  const [noticeDate, setNoticeDate] = useState('')
+  const { id } = props.match.params
 
-function NoticeContent(){
+  const noticeOnePost = useCallback(
+    async () => {
+      try {
+        const { data } = await patchNoticeOnePost(id)
+        setNoticetitle( data.title )
+        setNoticeContent( data.content )
+        setNoticeUser( data.user )
+        setNoticeDate( data.date )
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [id],
+  )
 
-  const [noticetitle, setnoticetitle] = useState(['즐거운 한가위 되세요!', '이번주에는 토요일에도 분리수거 가능합니다!']);
+  useEffect(() => {
+    noticeOnePost()
+  }, [noticeOnePost])
+
+  const onClickNoticeDelete = async () => {
+    if(window.confirm("정말 삭제하시겠어요?")) {
+      try {
+        await noticeDeleteOne(id)
+        props.history.push('/notice')
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
 
   return (
     <>
@@ -33,17 +65,17 @@ function NoticeContent(){
 
           <div className="noticecontent_lists">
             <div className="noticecontent_title">
-              { noticetitle[0] }
+              { noticetitle }
             </div>
             <div className="noticecontent_key">
               <div className="noticecontent_id">
-                관리자
+                { noticeUser }
               </div>
               <div className="noticecontent_hits">
                 조회수 3
               </div>
               <div className="noticecontent_date">
-                2019-09-19
+                { noticeDate }
               </div>
             </div>
             <div className="noticecontent_lines">
@@ -51,7 +83,9 @@ function NoticeContent(){
             </div>
           </div>
 
-          <div className="noticecontent_content"></div>
+          <div className="noticecontent_content">
+            { noticeContent }
+          </div>
 
           <div className="noticecontent_lines">
             <hr style = {{ border: 'solid 3px #898989', width: '80%', margin: '150px 0 20px'}}/>
@@ -63,12 +97,13 @@ function NoticeContent(){
               style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}>목 록</Link>
             </button>
             <button type="button" className="btns btn-success">
-              <Link to="/notice" 
+              <Link to={`/notice-update/${id}`}
               style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}>수 정</Link>
             </button>
-            <button type="button" className="btns btn-success">
-              <Link to="/notice" 
-              style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}>삭 제</Link>
+            <button type="button" className="btns btn-success"
+              style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}
+              onClick={ onClickNoticeDelete }>
+                삭 제
             </button>
           </div>
 
