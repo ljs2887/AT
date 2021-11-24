@@ -32,7 +32,8 @@
     "rules": {
       "no-unused-vars": 0,
       "no-alert": 0,
-      "no-restricted-globals": ["off"]
+      "no-restricted-globals": ["off"],
+      "no-underscore-dangle": 0
     },
     "settings": {
       "import/resolver": {

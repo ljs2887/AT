@@ -3,22 +3,27 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import './BoardContent.css';
 import { patchBoardOnePost, boardDeleteOnePost } from '../api'
+import Comment from './Comment.jsx'
 
 function BoardContent(props) {
   const [boardTitle, setBoardTitle] = useState('');
   const [boardContent, setBoardContent] = useState('');
   const [boardUser, setBoardUser] = useState('');
   const [boardDate, setBoardDate] = useState('');
+  const [hits, setHits] = useState(null);
+  const [underId, setUnderId] = useState('')
   const { id } = props.match.params
 
   const boardOnePost = useCallback(
     async () => {
       try {
         const { data } = await patchBoardOnePost(id)
-        setBoardTitle( data.title )
-        setBoardContent( data.content )
-        setBoardUser( data.user )
-        setBoardDate( data.date )
+        setBoardTitle(data.title)
+        setBoardContent(data.content)
+        setBoardUser(data.user)
+        setBoardDate(data.date)
+        setHits(data.hits)
+        setUnderId(data._id)
       } catch (error) {
         console.error(error);
       }
@@ -72,7 +77,7 @@ function BoardContent(props) {
                 { boardUser }
               </div>
               <div className="boardcontent_hits">
-                조회수 4
+                조회수 { hits }
               </div>
               <div className="boardcontent_date">
                 댓글 1개
@@ -109,29 +114,8 @@ function BoardContent(props) {
             </button>
           </div>
 
-          <div className="boardcontent_reply">
-            <div className="boardcontent_reply_arrow"></div>
-            <div className="boardcontent_reply_content">
-              저도 내년에 저희 아이가 유치원생이라 고민이네요 ㅠㅠㅠ 같이 알아봐요!!
-            </div>
-          </div>
-
-          <div className="mb-3">
-
-            <textarea 
-              className="form-control" 
-              id="exampleFormControlTextarea1" 
-              placeholder="댓글을 달아주세요"
-              rows="3"
-              style={{ width: '60%', marginLeft: '290px', marginTop: '50px' }}></textarea>
-          </div>
-
-          <div className="col-auto">
-            <button 
-              type="submit" 
-              className="btn btn-primary"
-              style={{ backgroundImage: 'linear-gradient(to right, #1fbe5f 22%, #91ea8a 93%)', border: 'solid 0px' }}>답글</button>
-          </div>
+         
+          <Comment underId={underId} />
 
         </div>
       </>

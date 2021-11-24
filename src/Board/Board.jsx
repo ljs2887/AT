@@ -27,9 +27,7 @@ function Board() {
       } catch (error) {
         console.error(error);
       }
-    },
-    [],
-  )
+    }, [])
 
   useEffect(() => {
     boardPost()

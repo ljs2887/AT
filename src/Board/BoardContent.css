@@ -55,21 +55,25 @@
 
 .boardcontent_reply {
   display: flex;
-  margin: 50px 0 0 180px;
+  margin: 50px 0 20px 180px;
 }
 
 .boardcontent_reply_arrow {
   width: 10%;
-  height: 200px;
-  /* margin: 50px 0 0 180px; */
+  height: 90px;
   background-image: url('../asset/img/arrow.png');
   background-repeat: no-repeat;
+}
+
+.boardcontent_reply_info {
+  display: flex;
+  flex-direction: column;
 }
 
 .boardcontent_reply_content {
   width: 777px;
   /* height: 147px; */
-  padding: 24px;
+  padding: 12px;
   border-radius: 13px;
   border: solid 1px #707070;
   background-color: #fff;

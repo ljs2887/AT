@@ -45,6 +45,15 @@ function noticeDeleteOne(id) {
 function noticeUpdateOne(id, boardInfo) {
 	return instance.put(`/notice/${id}`, boardInfo)
 }
+
+function commentCreate(id, commentInfo) {
+	return instance.post(`/comment/${id}`, commentInfo)
+}
+
+function commentOnePost(id) {
+	return instance.get(`/comment/${id}`)
+}
+
 export {
 	createBoardPost,
 	patchBoardPost,
@@ -55,5 +64,7 @@ export {
 	patchNoticePost,
 	patchNoticeOnePost,
 	noticeDeleteOne,
-	noticeUpdateOne
+	noticeUpdateOne,
+	commentCreate,
+	commentOnePost
 }
