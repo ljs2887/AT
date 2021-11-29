@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { commentOnePost } from '../api'
 import CommentEdit from './CommentEdit.jsx';
 
-function CommentContent(props) {
+function CommentUpdate(props) {
   const [comment, setComment] = useState([])
   const [update, setUpdate] = useState(false)
 
@@ -52,4 +52,4 @@ function CommentContent(props) {
   )
 }
 
-export default CommentContent
+export default CommentUpdate

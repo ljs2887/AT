@@ -6,6 +6,7 @@ import CommentContent from './CommentContent.jsx'
 
   const [content, setContent] = useState('')
   const [user, setUser] = useState('')
+  const [password, setPassword] = useState('')
   const [updateComment, setUpdateComment] = useState(false)
   const inputRef = useRef(null);
   const contextId = props.underId
@@ -18,6 +19,10 @@ import CommentContent from './CommentContent.jsx'
     setContent(e.target.value) 
   }, [])
 
+  const onChangePassword = useCallback((e) => {
+    setPassword(e.target.value) 
+  }, [])
+
   const onSubmitForm = useCallback(
     async (e) => {
       e.preventDefault()
@@ -26,7 +31,7 @@ import CommentContent from './CommentContent.jsx'
         user
       }
       try {
-        console.log(user);
+        console.log(contextId);
         if(!content && !user) {
           alert('모든 값을 입력하세요')
         } else {
@@ -47,15 +52,22 @@ import CommentContent from './CommentContent.jsx'
   return(
       <>
         <CommentContent underId={props.underId} updateComment={updateComment}/>
-        <form onSubmit={onSubmitForm}>
-        <div>
+        <form onSubmit={onSubmitForm} style={{ width: '60%', margin: '20px auto 0' }}>
+        <div style={{ display: 'flex', gap: '10px', justifyContent: 'center'}}>
           <input 
             className="form-control" 
             placeholder="아이디를 입력해주세요"
             ref={inputRef}
             value={ user }
             onChange={ onChangeUser }
-            style={{ width: '60%', marginLeft: '290px', marginTop: '50px' }} />
+            />
+          <input 
+            className="form-control" 
+            placeholder="비밀번호를 입력해주세요"
+            type="password"
+            value={ password }
+            onChange={ onChangePassword }
+             />
         </div>
         <div className="mb-3">
           <textarea 
@@ -64,7 +76,7 @@ import CommentContent from './CommentContent.jsx'
             rows="3"
             value={ content }
             onChange={ onChangeContent }
-            style={{ width: '60%', marginLeft: '290px',marginTop: '10px' }} />
+            style={{ marginTop: '10px' }} />
           </div>
           
           <div className="col-auto">

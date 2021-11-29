@@ -28,7 +28,7 @@ function BoardContent(props) {
         console.error(error);
       }
     },
-    [id],
+    [id, underId],
   )
 
   useEffect(() => {

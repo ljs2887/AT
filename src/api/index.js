@@ -54,6 +54,14 @@ function commentOnePost(id) {
 	return instance.get(`/comment/${id}`)
 }
 
+function commentDeleteOne(id) {
+	return instance.delete(`/comment/${id}`)
+}
+
+function commentUpdateOne(id, commentInfo) {
+	return instance.put(`/comment/${id}`, commentInfo)
+}
+
 export {
 	createBoardPost,
 	patchBoardPost,
@@ -66,5 +74,7 @@ export {
 	noticeDeleteOne,
 	noticeUpdateOne,
 	commentCreate,
-	commentOnePost
+	commentOnePost,
+	commentDeleteOne,
+	commentUpdateOne
 }
