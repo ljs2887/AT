@@ -48,7 +48,6 @@ import { patchBoardOnePost, updateOnePost } from '../api';
     }
     try {
       const { data } = await updateOnePost(id, boardInfo)
-      console.log(data);
       props.history.push(`/board-content/${id}`)
     } catch (error) {
       alert(error.response.data)

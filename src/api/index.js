@@ -58,8 +58,12 @@ function commentDeleteOne(id) {
 	return instance.delete(`/comment/${id}`)
 }
 
+function commentOneFatch(id) {
+	return instance.get(`/comment/${id}/one`)
+}
+
 function commentUpdateOne(id, commentInfo) {
-	return instance.put(`/comment/${id}`, commentInfo)
+	return instance.put(`/comment/${id}/one`, commentInfo)
 }
 
 export {
@@ -76,5 +80,6 @@ export {
 	commentCreate,
 	commentOnePost,
 	commentDeleteOne,
+	commentOneFatch,
 	commentUpdateOne
 }

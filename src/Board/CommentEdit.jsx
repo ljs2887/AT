@@ -19,7 +19,7 @@ const CommentEdit = (props) => {
     <>
     <div className="container boardcontent_buttons">
          <button type="button" className="btns btn-success">
-           <Link to={'/board-update'}
+           <Link to={`/comment-update/${ props.boardId }`}
           style={{ fontSize: '12px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}>
             댓글수정
           </Link>
