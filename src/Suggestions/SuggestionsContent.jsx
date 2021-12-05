@@ -1,13 +1,50 @@
-import React, { useState, useEffect } from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
-import { Link, Route, Switch, useHistory, useParams } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import '../App.css';
 import './SuggestionsContent.css';
+import { patchSuggestionsOnePost, suggestionsDeleteOnePost } from '../api'
+import SuggestionsComment from './SuggestionsComment.jsx'
 
+function SuggestionContent(props) {
+  const [suggestionsTitle, setSuggestionsTitle] = useState('');
+  const [suggestionsContent, setSuggestionsContent] = useState('');
+  const [suggestionsUser, setSuggestionsUser] = useState('');
+  const [suggestionsDate, setSuggestionsDate] = useState('');
+  const [hits, setHits] = useState(null);
+  const [underId, setUnderId] = useState('')
+  const { id } = props.match.params
+  
+  const suggestionsOnePost = useCallback(
+    async () => {
+      try {
+        const { data } = await patchSuggestionsOnePost(id)
+        setSuggestionsTitle(data.title)
+        setSuggestionsContent(data.content)
+        setSuggestionsUser(data.user)
+        setSuggestionsDate(data.date)
+        setHits(data.hits)
+        setUnderId(data._id)
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [id, underId],
+  )
 
-function SuggestionContent() {
+  useEffect(() => {
+    suggestionsOnePost()
+  }, [suggestionsOnePost])
 
-  const [suggestionstitle, setsuggestionstitle] = useState(['현관 문 앞에 구토가 있어요.', '403호 건의']);
+  const onSuggestionsClickDelete = async () => {
+    if(window.confirm("정말 삭제하시겠어요?")) {
+      try {
+        await suggestionsDeleteOnePost(id)
+        props.history.push('/suggestions')
+      } catch (error) {
+        console.error(error)
+      }
+    } 
+  }
 
   return (
     <>
@@ -33,17 +70,20 @@ function SuggestionContent() {
 
           <div className="suggestionscontent_lists">
             <div className="suggestionscontent_title">
-              { suggestionstitle[1] }
+              { suggestionsTitle }
             </div>
             <div className="suggestionscontent_key">
               <div className="suggestionscontent_id">
-                403호
+                { suggestionsUser }
               </div>
               <div className="suggestionscontent_hits">
-                조회수 3
+                조회수 { hits }
               </div>
               <div className="suggestionscontent_date">
-                2019-09-10
+                댓글 1개
+              </div>
+              <div className="suggestionscontent_date">
+                { suggestionsDate }
               </div>
             </div>
             <div className="suggestionscontent_lines">
@@ -51,7 +91,9 @@ function SuggestionContent() {
             </div>
           </div>
 
-          <div className="suggestionscontent_content"></div>
+          <div className="suggestionscontent_content">
+            { suggestionsContent }
+          </div>
 
           <div className="suggestionscontent_lines">
             <hr style = {{ border: 'solid 3px #898989', width: '80%', margin: '150px 0 20px'}}/>
@@ -63,14 +105,17 @@ function SuggestionContent() {
               style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}>목 록</Link>
             </button>
             <button type="button" className="btns btn-success">
-              <Link to="/suggestions" 
+              <Link to={`/suggestions-update/${ id }`}
               style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}>수 정</Link>
             </button>
-            <button type="button" className="btns btn-success">
-              <Link to="/suggestions" 
-              style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}>삭 제</Link>
+            <button type="button" className="btns btn-success"
+              style={{ fontSize: '18px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}
+              onClick={ onSuggestionsClickDelete }>
+                삭 제
             </button>
           </div>
+
+          <SuggestionsComment underId={underId} />
 
         </div>
     </>

@@ -113,20 +113,6 @@ const NoticeWrite = withRouter(props => {
           </div>
 
           <div className="noticewrite_lines">
-            <hr style = {{ border: 'solid 1px #805050', width: '75%', margin: '10px 0 20px'}}/>
-          </div>
-
-          <div class="mb-3" style={{ display: 'flex', gap: '10px', width: '80%', paddingLeft: '15%' }}>
-            <label 
-              htmlFor="exampleFormControlInput1" 
-              className="form-label" 
-              style={{ width: '80px', fontWeight: 'bold' }}>
-                사진
-            </label>
-            <input class="form-control" type="file" id="formFile" />
-          </div>
-
-          <div className="noticewrite_lines">
             <hr style = {{ border: 'solid 3px #898989', width: '80%', margin: '10px 0 20px'}}/>
           </div>
 

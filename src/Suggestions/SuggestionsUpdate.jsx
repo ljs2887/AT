@@ -1,13 +1,32 @@
-import React, { useState } from 'react';
-import { Link, withRouter} from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import '../App.css';
 import './SuggestionsWrite.css';
-import { createSuggestionsPost } from '../api';
+import { patchSuggestionsOnePost, suggestionsupdateOnePost } from '../api';
 
-const SuggestionWrite = withRouter(props => {
+const SuggestionsUpdate = (props) => {
   const [suggestionsTitle, setSuggestionsTitle] = useState('')
   const [suggestionsContent, setSuggestionsContent] = useState('')
   const [suggestionsUser, setSuggestionsUser] = useState('')
+  const { id } = props.match.params
+
+  const suggestionsOnePost = useCallback(
+    async () => {
+      try {
+        const {data} = await patchSuggestionsOnePost(id)
+        setSuggestionsTitle(data.title)
+        setSuggestionsContent(data.content)
+        setSuggestionsUser(data.user)
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [id]
+  )
+
+  useEffect(() => {
+    suggestionsOnePost()
+  }, [suggestionsOnePost])
 
   const onChangeSuggestionsTitle = (e) => {
     setSuggestionsTitle(e.target.value)
@@ -29,8 +48,8 @@ const SuggestionWrite = withRouter(props => {
       user: suggestionsUser
     }
     try {
-      await createSuggestionsPost(suggestionsInfo)
-      props.history.push('/suggestions')
+      await suggestionsupdateOnePost(id, suggestionsInfo)
+      props.history.push(`/suggestions-content/${id}`)
     } catch (error) {
       console.error(error)
     }
@@ -131,6 +150,6 @@ const SuggestionWrite = withRouter(props => {
         </div>
     </>
   )
-})
+}
 
-export default SuggestionWrite;
+export default SuggestionsUpdate;

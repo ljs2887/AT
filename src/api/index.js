@@ -54,8 +54,8 @@ function commentOnePost(id) {
 	return instance.get(`/comment/${id}`)
 }
 
-function commentDeleteOne(id) {
-	return instance.delete(`/comment/${id}`)
+function commentDeleteOne(id, password) {
+	return instance.delete(`/comment/${id}?password=${password}`)
 }
 
 function commentOneFatch(id) {
@@ -64,6 +64,47 @@ function commentOneFatch(id) {
 
 function commentUpdateOne(id, commentInfo) {
 	return instance.put(`/comment/${id}/one`, commentInfo)
+}
+
+function createSuggestionsPost(suggestionsInfo) {
+	// 리액트에서 백엔드로 데이터를 보내줌
+	return instance.post('/suggestions', suggestionsInfo)
+}
+
+function patchSuggestionsPost() {
+	return instance.get('/suggestions')
+}
+
+function patchSuggestionsOnePost(id) {
+	return instance.get(`/suggestions/${id}`)
+}
+
+function suggestionsDeleteOnePost(id) {
+	return instance.delete(`/suggestions/${id}`)
+}
+
+function suggestionsupdateOnePost(id, SuggestionsInfo) {
+	return instance.put(`/suggestions/${id}`, SuggestionsInfo)
+}
+
+function suggestionsCommentCreate(id, SuggestionsCommentInfo) {
+	return instance.post(`/suggestionscomment/${id}`, SuggestionsCommentInfo)
+}
+
+function suggestionsCommentOnePost(id) {
+	return instance.get(`/suggestionscomment/${id}`)
+}
+
+function suggestionsCommentDeleteOne(id, password) {
+	return instance.delete(`/suggestionscomment/${id}?password=${password}`)
+}
+
+function suggestionsCommentOneFatch(id) {
+	return instance.get(`/suggestionscomment/${id}/one`)
+}
+
+function suggestionsCommentUpdateOne(id, suggestionscommentInfo) {
+	return instance.put(`/suggestionscomment/${id}/one`, suggestionscommentInfo)
 }
 
 export {
@@ -81,5 +122,15 @@ export {
 	commentOnePost,
 	commentDeleteOne,
 	commentOneFatch,
-	commentUpdateOne
+	commentUpdateOne,
+	createSuggestionsPost,
+	patchSuggestionsPost,
+	patchSuggestionsOnePost,
+	suggestionsDeleteOnePost,
+	suggestionsupdateOnePost,
+	suggestionsCommentCreate,
+	suggestionsCommentOnePost,
+	suggestionsCommentDeleteOne,
+	suggestionsCommentOneFatch,
+	suggestionsCommentUpdateOne
 }

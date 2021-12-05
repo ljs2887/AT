@@ -113,7 +113,6 @@ function BoardContent(props) {
               삭 제
             </button>
           </div>
-
          
           <Comment underId={underId} />
 

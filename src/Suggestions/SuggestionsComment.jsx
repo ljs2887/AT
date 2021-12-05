@@ -1,9 +1,8 @@
 import React, { useState, useRef, useCallback } from 'react';
-import { commentCreate } from '../api'
-import CommentContent from './CommentContent.jsx'
+import { suggestionsCommentCreate } from '../api'
+import SuggestionsCommentContents from './SuggestionsCommentContents.jsx'
 
- const Comment = (props) => {
-
+const SuggestionsComment = (props) => {
   const [content, setContent] = useState('')
   const [user, setUser] = useState('')
   const [password, setPassword] = useState('')
@@ -26,14 +25,14 @@ import CommentContent from './CommentContent.jsx'
   const onSubmitForm = useCallback(
     async (e) => {
       e.preventDefault()
-      const commentInfo = {
+      const suggestionsCommentInfo = {
         content,
         user,
         password
       }
       try {
         console.log(contextId);
-          await commentCreate(contextId, commentInfo)
+          await suggestionsCommentCreate(contextId, suggestionsCommentInfo)
           setUpdateComment(prev => !prev)
           setContent('')
           setUser('')
@@ -47,10 +46,10 @@ import CommentContent from './CommentContent.jsx'
     [user, content, contextId, password],
   )
 
-  return(
-      <>
-        <CommentContent underId={props.underId} updateComment={updateComment}/>
-        <form onSubmit={onSubmitForm} style={{ width: '60%', margin: '20px auto 0' }}>
+  return (
+    <>
+      <SuggestionsCommentContents underId={props.underId} updateComment={updateComment}/>
+      <form onSubmit={onSubmitForm} style={{ width: '60%', margin: '20px auto 0' }}>
         <div style={{ display: 'flex', gap: '10px', justifyContent: 'center'}}>
           <input 
             className="form-control" 
@@ -86,8 +85,8 @@ import CommentContent from './CommentContent.jsx'
             </button>
           </div>
         </form>
-      </>
-    )
+    </>
+  )
 }
 
-export default Comment
+export default SuggestionsComment

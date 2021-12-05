@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { commentDeleteOne, commentUpdateOne } from '../api'
+import { suggestionsCommentDeleteOne, suggestionsCommentUpdateOne } from '../api'
 
-const CommentEdit = (props) => {
+const SuggestionsCommentEdit = (props) => {
   const [password, setPassword] = useState('')
 
   const onChangePassword = useCallback((e) => {
@@ -13,7 +13,7 @@ const CommentEdit = (props) => {
 
     if(window.confirm("정말 삭제하시겠어요?")) {
       try {
-        await commentDeleteOne(props.boardId, password)
+        await suggestionsCommentDeleteOne(props.suggestionsId, password)
         props.commentUpdate()
       } catch (error) {
         alert(error.response.data)
@@ -23,9 +23,9 @@ const CommentEdit = (props) => {
 
   return (
     <>
-    <div className="container boardcontent_buttons">
+      <div className="container suggestionscontent_buttons">
          <button type="button" className="btns btn-success">
-           <Link to={`/comment-update/${ props.boardId }`}
+           <Link to={`/suggestions-comment-update/${ props.suggestionsId }`}
           style={{ fontSize: '12px', textDecorationLine: 'none', color: '#fff', fontWeight: 'bold' }}>
             댓글수정
           </Link>
@@ -47,4 +47,4 @@ const CommentEdit = (props) => {
   )
 }
 
-export default CommentEdit
+export default SuggestionsCommentEdit

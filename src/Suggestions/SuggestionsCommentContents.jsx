@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { commentOnePost } from '../api'
-import CommentEdit from './CommentEdit.jsx';
+import { suggestionsCommentOnePost } from '../api'
+import SuggestionsCommentEdit from './SuggestionsCommentEdit.jsx';
 
-function CommentContent(props) {
+function SuggestionsCommentContents(props) {
   const [comment, setComment] = useState([])
   const [update, setUpdate] = useState(false)
 
   const commentPost = useCallback(
     async () => {
       try {
-        const { data } = await commentOnePost(props.underId)
+        const { data } = await suggestionsCommentOnePost(props.underId)
         setComment([...data])
       } catch (error) {
         console.error(error);
@@ -30,20 +30,20 @@ function CommentContent(props) {
         {
           comment.map((a) => (
             <div key={a._id}>
-              <div className="boardcontent_reply">
-                <div className="boardcontent_reply_arrow"></div>
-                <div className="boardcontent_reply_info">
-                  <div className="boardcontent_reply_ate">
+              <div className="suggestionscontent_reply">
+                <div className="suggestionscontent_reply_arrow"></div>
+                <div className="suggestionscontent_reply_info">
+                  <div className="suggestionscontent_reply_ate">
                     { a.user }님 
                   </div>
-                  <div className="boardcontent_reply_content">
+                  <div className="suggestionscontent_reply_content">
                   { a.content }
                   </div>
                   날짜 { a.date }
                 </div>
               </div>
               
-              <CommentEdit boardId={a._id} commentUpdate={commentUpdate}/>
+              <SuggestionsCommentEdit suggestionsId={a._id} commentUpdate={commentUpdate}/>
             </div>
           ))
         }
@@ -51,4 +51,4 @@ function CommentContent(props) {
   )
 }
 
-export default CommentContent
+export default SuggestionsCommentContents

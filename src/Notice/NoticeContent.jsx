@@ -9,16 +9,18 @@ function NoticeContent(props){
   const [noticeContent, setNoticeContent] = useState('')
   const [noticeUser, setNoticeUser] = useState('')
   const [noticeDate, setNoticeDate] = useState('')
+  const [hits, setHits] = useState(null);
   const { id } = props.match.params
 
   const noticeOnePost = useCallback(
     async () => {
       try {
         const { data } = await patchNoticeOnePost(id)
-        setNoticetitle( data.title )
-        setNoticeContent( data.content )
-        setNoticeUser( data.user )
-        setNoticeDate( data.date )
+        setNoticetitle(data.title)
+        setNoticeContent(data.content)
+        setNoticeUser(data.user)
+        setNoticeDate(data.date)
+        setHits(data.hits)
       } catch (error) {
         console.error(error);
       }
@@ -72,7 +74,7 @@ function NoticeContent(props){
                 { noticeUser }
               </div>
               <div className="noticecontent_hits">
-                조회수 3
+                조회수 { hits }
               </div>
               <div className="noticecontent_date">
                 { noticeDate }
@@ -106,6 +108,8 @@ function NoticeContent(props){
                 삭 제
             </button>
           </div>
+
+          
 
         </div>
     </>

@@ -18,6 +18,8 @@ const NoticeUpdate = lazy(() => import('./Notice/NoticeUpdate'))
 const Suggestions = lazy(() => import('./Suggestions/Suggestions'))
 const SuggestionsContent = lazy(() => import('./Suggestions/SuggestionsContent'))
 const SuggestionsWrite = lazy(() => import('./Suggestions/SuggestionsWrite'))
+const SuggestionsUpdate = lazy(() => import('./Suggestions/SuggestionsUpdate'))
+const SuggestionsCommentUpdate = lazy(() => import('./Suggestions/SuggestionsCommentUpdate'))
 const Login = lazy(() => import('./Login/Login'))
 const Find = lazy(() => import('./Find/Find'))
 const Join = lazy(() => import('./Join/Join'))
@@ -34,15 +36,17 @@ function App() {
           <Route path="/board" component={Board} />
           <Route path="/board-content/:id" component={BoardContent} />
           <Route path="/board-write" component={BoardWrite} />     
-          <Route path="/board-update/:id" component={BoardUpdate} />        
+          <Route path="/board-update/:id" component={BoardUpdate} />    
+          <Route path="/comment-update/:id" component={CommentUpdate} />    
           <Route path="/notice" component={Notice} />
           <Route path="/notice-content/:id" component={NoticeContent} />
           <Route path="/notice-write" component={NoticeWrite} />
           <Route path="/notice-update/:id" component={NoticeUpdate} />      
           <Route path="/suggestions" component={Suggestions} />
-          <Route path="/suggestions-content" component={SuggestionsContent} />
+          <Route path="/suggestions-content/:id" component={SuggestionsContent} />
           <Route path="/suggestions-write" component={SuggestionsWrite} />
-          <Route path="/comment-update/:id" component={CommentUpdate} />
+          <Route path="/suggestions-update/:id" component={SuggestionsUpdate} />
+          <Route path="/suggestions-comment-update/:id" component={SuggestionsCommentUpdate} />
           <Route path="/login" component={Login} />
           <Route path="/Find" component={Find} />
           <Route path="/join" component={Join} />

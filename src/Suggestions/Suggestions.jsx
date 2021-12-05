@@ -1,16 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
-import { Link, Route, Switch, useHistory, useParams } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { patchSuggestionsPost } from '../api';
 import '../App.css';
 import './Suggestions.css';
 
 
 function Suggestion() {
-  
-  const [suggestionstitle, setsuggestionstitle] = useState(['현관 문 앞에 구토가 있어요.', '403호 건의']);
-  const [suggestionscontent, setsuggestionscontent] = useState(['오늘 저녁 쯤에 집에 들어오는데 현관문 옆에 누가 구토를 했네요 ㅠㅠ', '저희 집 천장에서 물이 떨어지네요! 바로 확인해주세요!!']);
-  const [suggestionsdate, setsuggestionsdate] = useState(['2020-09-13', '2020-09-10']);
-  const suggestionshits = suggestionstitle.length;
+  const { id } = useParams();
+  const [suggestionsTitle, setsuggestionsTitle] = useState([]);
+  const [suggestionsContent, setsuggestionsContent] = useState([]);
+  const [suggestionsDate, setsuggestionsDate] = useState([]);
+  const [suggestionsuser, setSuggestionsUser] = useState([]);
+  const suggestionshits = suggestionsTitle.length;
+  const [suggestionsPostId, setSuggestionsPostId] = useState([]);
+
+  const suggestionsPost = useCallback(
+    async () => {
+      try {
+        const { data } = await patchSuggestionsPost()
+        setSuggestionsPostId(data.map(v => v.postId))
+        setsuggestionsTitle(data.map(v => v.title))
+        setsuggestionsContent(data.map(v => v.content))
+        setsuggestionsDate(data.map(v => v.date))
+        setSuggestionsUser(data.map(v => v.user))
+      } catch (error) {
+        console.error(error);
+      }
+    }, [])
+
+    useEffect(() => {
+      suggestionsPost()
+    }, [suggestionsPost])
 
   return (
     <>
@@ -34,11 +54,11 @@ function Suggestion() {
         <hr style = {{ border: 'solid 3px #898989', width: '80%', margin: '5px 0 20px'}}/>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', justifyContent: 'flex-start', width: '80%', alignItems: 'center' }}>
           {
-            suggestionstitle.map((a, i) => (
+            suggestionsTitle.map((a, i) => (
                 <>
-                  <div className="suggestions_list_title" style={{ alignSelf: 'flex-start' }}>{ suggestionstitle[i] }</div>
-                  <div className="suggestions_list_content"><Link to="/suggestions-content" style={{ textDecorationLine: 'none', color: '#000' }}>{ suggestionscontent[i] }</Link></div>
-                  <div className="suggestions_list_date">{ suggestionsdate[i] }</div>
+                  <div className="suggestions_list_title" style={{ alignSelf: 'flex-start' }}>{ suggestionsTitle[i] }</div>
+                  <div className="suggestions_list_content"><Link to={`/suggestions-content/${ suggestionsPostId[i] }`} style={{ textDecorationLine: 'none', color: '#000' }}>{ suggestionsContent[i] }</Link></div>
+                  <div className="suggestions_list_date">{ suggestionsDate[i] }</div>
                   <hr style = {{ border: 'solid 1px #805050', width: '100%', margin: '5px 0'}}/>
                 </>
               ))
